@@ -1,0 +1,176 @@
+NOTE: PROCEDURE PRINTTO used (Total process time):
+      real time           0.53 seconds
+      cpu time            0.07 seconds
+      
+
+4    
+5    
+6    data total_points (drop=TeamName);
+7    put _all_;
+8     input TeamName $ ParticipantName $ Event1 Event2 Event3;
+9     TeamTotal + (Event1 + Event2 + Event3);
+10   put _all_;
+11    datalines;
+
+TeamName=  ParticipantName=  Event1=. Event2=. Event3=. TeamTotal=0 _ERROR_=0 _N_=1
+TeamName=Knights ParticipantName=Sue Event1=6 Event2=8 Event3=8 TeamTotal=22 _ERROR_=0 _N_=1
+TeamName=  ParticipantName=  Event1=. Event2=. Event3=. TeamTotal=22 _ERROR_=0 _N_=2
+TeamName=Kings ParticipantName=Jane Event1=9 Event2=7 Event3=8 TeamTotal=46 _ERROR_=0 _N_=2
+TeamName=  ParticipantName=  Event1=. Event2=. Event3=. TeamTotal=46 _ERROR_=0 _N_=3
+TeamName=Knights ParticipantName=John Event1=7 Event2=7 Event3=7 TeamTotal=67 _ERROR_=0 _N_=3
+TeamName=  ParticipantName=  Event1=. Event2=. Event3=. TeamTotal=67 _ERROR_=0 _N_=4
+TeamName=Knights ParticipantName=Lisa Event1=8 Event2=9 Event3=9 TeamTotal=93 _ERROR_=0 _N_=4
+TeamName=  ParticipantName=  Event1=. Event2=. Event3=. TeamTotal=93 _ERROR_=0 _N_=5
+TeamName=Knights ParticipantName=Fran Event1=7 Event2=6 Event3=6 TeamTotal=112 _ERROR_=0 _N_=5
+TeamName=  ParticipantName=  Event1=. Event2=. Event3=. TeamTotal=112 _ERROR_=0 _N_=6
+TeamName=Knights ParticipantName=Walter Event1=9 Event2=8 Event3=10 TeamTotal=139 _ERROR_=0
+_N_=6
+TeamName=  ParticipantName=  Event1=. Event2=. Event3=. TeamTotal=139 _ERROR_=0 _N_=7
+NOTE: The data set WORK.TOTAL_POINTS has 6 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.01 seconds
+      
+
+18   ;
+19   
+20   data total_points1 (drop=TeamName);
+21   put _all_;
+22    input TeamName $ ParticipantName $ Event1 Event2 Event3;
+23    TeamTotal + sum(of Event1, Event2, Event3);
+24   put _all_;
+25    datalines;
+
+TeamName=  ParticipantName=  Event1=. Event2=. Event3=. TeamTotal=0 _ERROR_=0 _N_=1
+TeamName=Knights ParticipantName=Sue Event1=6 Event2=8 Event3=8 TeamTotal=22 _ERROR_=0 _N_=1
+TeamName=  ParticipantName=  Event1=. Event2=. Event3=. TeamTotal=22 _ERROR_=0 _N_=2
+TeamName=Kings ParticipantName=Jane Event1=9 Event2=7 Event3=8 TeamTotal=46 _ERROR_=0 _N_=2
+TeamName=  ParticipantName=  Event1=. Event2=. Event3=. TeamTotal=46 _ERROR_=0 _N_=3
+TeamName=Knights ParticipantName=John Event1=7 Event2=7 Event3=7 TeamTotal=67 _ERROR_=0 _N_=3
+TeamName=  ParticipantName=  Event1=. Event2=. Event3=. TeamTotal=67 _ERROR_=0 _N_=4
+TeamName=Knights ParticipantName=Lisa Event1=8 Event2=9 Event3=9 TeamTotal=93 _ERROR_=0 _N_=4
+TeamName=  ParticipantName=  Event1=. Event2=. Event3=. TeamTotal=93 _ERROR_=0 _N_=5
+TeamName=Knights ParticipantName=Fran Event1=7 Event2=6 Event3=6 TeamTotal=112 _ERROR_=0 _N_=5
+TeamName=  ParticipantName=  Event1=. Event2=. Event3=. TeamTotal=112 _ERROR_=0 _N_=6
+TeamName=Knights ParticipantName=Walter Event1=9 Event2=8 Event3=10 TeamTotal=139 _ERROR_=0
+_N_=6
+TeamName=  ParticipantName=  Event1=. Event2=. Event3=. TeamTotal=139 _ERROR_=0 _N_=7
+NOTE: The data set WORK.TOTAL_POINTS1 has 6 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+32   ;
+33   
+34   data points (drop=TeamName);
+35    input TeamName $ ParticipantName $ Event1 Event2 Event3;
+36    datalines;
+
+NOTE: The data set WORK.POINTS has 6 observations and 4 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+43   ;
+44   
+45   data team_points2;
+46       put _all_;
+47       set points;
+48       TeamTotal + sum(of Event1, Event2, Event3);
+49       put _all_;
+50   run;
+
+ParticipantName=  Event1=. Event2=. Event3=. TeamTotal=0 _ERROR_=0 _N_=1
+ParticipantName=Sue Event1=6 Event2=8 Event3=8 TeamTotal=22 _ERROR_=0 _N_=1
+ParticipantName=Sue Event1=6 Event2=8 Event3=8 TeamTotal=22 _ERROR_=0 _N_=2
+ParticipantName=Jane Event1=9 Event2=7 Event3=8 TeamTotal=46 _ERROR_=0 _N_=2
+ParticipantName=Jane Event1=9 Event2=7 Event3=8 TeamTotal=46 _ERROR_=0 _N_=3
+ParticipantName=John Event1=7 Event2=7 Event3=7 TeamTotal=67 _ERROR_=0 _N_=3
+ParticipantName=John Event1=7 Event2=7 Event3=7 TeamTotal=67 _ERROR_=0 _N_=4
+ParticipantName=Lisa Event1=8 Event2=9 Event3=9 TeamTotal=93 _ERROR_=0 _N_=4
+ParticipantName=Lisa Event1=8 Event2=9 Event3=9 TeamTotal=93 _ERROR_=0 _N_=5
+ParticipantName=Fran Event1=7 Event2=6 Event3=6 TeamTotal=112 _ERROR_=0 _N_=5
+ParticipantName=Fran Event1=7 Event2=6 Event3=6 TeamTotal=112 _ERROR_=0 _N_=6
+ParticipantName=Walter Event1=9 Event2=8 Event3=10 TeamTotal=139 _ERROR_=0 _N_=6
+ParticipantName=Walter Event1=9 Event2=8 Event3=10 TeamTotal=139 _ERROR_=0 _N_=7
+NOTE: There were 6 observations read from the data set WORK.POINTS.
+NOTE: The data set WORK.TEAM_POINTS2 has 6 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+51   
+52    data grades;
+53    put _all_;
+54    StudentID=101; Class="A"; English=80; Math=70; output;
+55    put _all_;
+56    StudentID=102; Class="B"; English=. ; Math=60; output;
+57    put _all_;
+58    StudentID=103; Class="A"; English=70; Math=. ; output;
+59    put _all_;
+60    StudentID=104; Class="A"; English=80; Math=95; output;
+61    put _all_;
+62    StudentID=105; Class="B"; English=90; Math=80; output;
+63    put _all_;
+64    run;
+
+StudentID=. Class=  English=. Math=. _ERROR_=0 _N_=1
+StudentID=101 Class=A English=80 Math=70 _ERROR_=0 _N_=1
+StudentID=102 Class=B English=. Math=60 _ERROR_=0 _N_=1
+StudentID=103 Class=A English=70 Math=. _ERROR_=0 _N_=1
+StudentID=104 Class=A English=80 Math=95 _ERROR_=0 _N_=1
+StudentID=105 Class=B English=90 Math=80 _ERROR_=0 _N_=1
+NOTE: The data set WORK.GRADES has 5 observations and 4 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+65   
+66    data example3;
+67    put _all_;
+68    set grades;
+69    length eng_cnt math_cnt average 8 ;
+70    if English > . then eng_cnt=1 ; else Eng_cnt=0 ;
+71    if Math > . then math_cnt=1 ;
+72    class_cnt = sum (eng_cnt, math_cnt) ;
+73    average = sum (English, Math) / class_cnt ;
+74    put _all_;
+75    run;
+
+StudentID=. Class=  English=. Math=. eng_cnt=. math_cnt=. average=. class_cnt=. _ERROR_=0
+_N_=1
+StudentID=101 Class=A English=80 Math=70 eng_cnt=1 math_cnt=1 average=75 class_cnt=2 _ERROR_=0
+_N_=1
+StudentID=101 Class=A English=80 Math=70 eng_cnt=. math_cnt=. average=. class_cnt=. _ERROR_=0
+_N_=2
+StudentID=102 Class=B English=. Math=60 eng_cnt=0 math_cnt=1 average=60 class_cnt=1 _ERROR_=0
+_N_=2
+StudentID=102 Class=B English=. Math=60 eng_cnt=. math_cnt=. average=. class_cnt=. _ERROR_=0
+_N_=3
+StudentID=103 Class=A English=70 Math=. eng_cnt=1 math_cnt=. average=70 class_cnt=1 _ERROR_=0
+_N_=3
+StudentID=103 Class=A English=70 Math=. eng_cnt=. math_cnt=. average=. class_cnt=. _ERROR_=0
+_N_=4
+StudentID=104 Class=A English=80 Math=95 eng_cnt=1 math_cnt=1 average=87.5 class_cnt=2
+_ERROR_=0 _N_=4
+StudentID=104 Class=A English=80 Math=95 eng_cnt=. math_cnt=. average=. class_cnt=. _ERROR_=0
+_N_=5
+StudentID=105 Class=B English=90 Math=80 eng_cnt=1 math_cnt=1 average=85 class_cnt=2 _ERROR_=0
+_N_=5
+StudentID=105 Class=B English=90 Math=80 eng_cnt=. math_cnt=. average=. class_cnt=. _ERROR_=0
+_N_=6
+NOTE: There were 5 observations read from the data set WORK.GRADES.
+NOTE: The data set WORK.EXAMPLE3 has 5 observations and 8 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+76   
+77   proc printto;
+78   run;
+
