@@ -1,0 +1,978 @@
+NOTE: PROCEDURE PRINTTO used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.00 seconds
+      
+
+87   
+88   
+89   /*Compiling and Saving the Template*/
+90   
+91   
+92   /*current template search path*/
+93   ods path show;
+Current ODS PATH list is: 
+
+1. SASUSER.TEMPLAT(UPDATE) 
+2. SASHELP.TMPLMST(READ) 
+94   
+95   /*list the templates that are stored in the Sasuser.Template*/
+96   proc template;
+97       list/store = sasuser.templat;
+98   run;
+NOTE: PROCEDURE TEMPLATE used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.00 seconds
+      
+
+99   
+100  /*Examples*/
+101  
+102  proc template;
+103      list/store = sashelp.tmplmst;
+104  run;
+NOTE: PROCEDURE TEMPLATE used (Total process time):
+      real time           0.06 seconds
+      cpu time            0.03 seconds
+      
+
+105  
+106  proc template;
+107      list/store = sashelp.tmplstat;
+108  run;
+NOTE: PROCEDURE TEMPLATE used (Total process time):
+      real time           0.42 seconds
+      cpu time            0.31 seconds
+      
+
+109  
+110  
+111  proc template;
+112      list/store = sashelp.tmplets;
+113  run;
+NOTE: PROCEDURE TEMPLATE used (Total process time):
+      real time           0.15 seconds
+      cpu time            0.09 seconds
+      
+
+114  
+115  
+116  proc template;
+117      list/store = sashelp.tmplqc;
+118  run;
+NOTE: PROCEDURE TEMPLATE used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.03 seconds
+      
+
+119  
+120  
+121  proc template;
+122      list/store = sashelp.tmpliml;
+123  run;
+NOTE: PROCEDURE TEMPLATE used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.00 seconds
+      
+
+124  
+125  
+126  /*Code for a template that is stored in the Sasuser writes in log window*/
+127  /*
+128  proc template;
+129      path sasuser.templat;
+130      source <template-name>;
+131  run;
+132  */
+133  
+134  /*Example*/
+135  proc template;
+136      path sasuser.templat;
+137      source swimmer;
+define statgraph Swimmer;
+   dynamic _byval2_;
+   begingraph;
+      entrytitle halign=left textattrs=(size=11pt) "Treatment: " _BYVAL2_;
+      entryfootnote halign=left textattrs=(Family="Arial" color=black size=11pt)
+         "Each bar represents one subject in the study.  Right arrow cap indicates continued
+ response.";
+      entryfootnote halign=left textattrs=(Family="Arial" color=black size=11pt)
+         'A durable responder is a subject who has confirmed response for at least 183 days
+ (6 months).';
+      layout overlay / xaxisopts=(label='Months') yaxisopts=(label=
+         'Subjects Received Study Drug' display=none);
+         highlowplot y=ITEM low=LOW high=HIGH / highcap=HIGHCAP type=bar group=STAGE
+            lineattrs=(color=black) name='stage' barwidth=1 fillattrs=(transparency=0.6);
+         highlowplot y=ITEM low=STARTLINE high=ENDLINE / group=STATUS lineattrs=(thickness=2
+            pattern=solid) name='status';
+         scatterplot y=ITEM x=START / markerattrs=(symbol=trianglefilled size=8 color=
+            darkgray) name='s' legendlabel='Response start';
+         scatterplot y=ITEM x=END / markerattrs=(symbol=circlefilled size=8 color=darkgray)
+            name='e' legendlabel='Response end';
+         scatterplot y=ITEM x=DURABLE / markerattrs=(symbol=squarefilled size=6 color=black)
+            name='d' legendlabel='Durable responder';
+         scatterplot y=ITEM x=START / markerattrs=(symbol=trianglefilled size=8) group=STATUS;
+         scatterplot y=ITEM x=END / markerattrs=(symbol=circlefilled size=8) group=STATUS;
+         discretelegend 'stage' / title='Disease Stage';
+         discretelegend 'status' 's' 'e' 'd' / location=inside across=1 halign=right valign=
+            bottom border=false;
+      endlayout;
+   endgraph;
+end;
+NOTE: Path 'Swimmer' is in: SASUSER.TEMPLAT.
+138  run;
+NOTE: PROCEDURE TEMPLATE used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+139  
+140  
+141  ods path show;
+Current ODS PATH list is: 
+
+1. SASUSER.TEMPLAT(UPDATE) 
+2. SASHELP.TMPLMST(READ) 
+142  
+143  proc template;
+144      list/store=sasuser.templat;
+145  run;
+NOTE: PROCEDURE TEMPLATE used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.00 seconds
+      
+
+146  
+147  proc template;
+148      path sasuser.templat;
+149      source disdur;
+define statgraph Disdur;
+   dynamic _byval2_;
+   begingraph / border=false;
+      entrytitle halign=left textattrs=(size=11pt) "Treatment: " _BYVAL2_;
+      layout overlay / xaxisopts=(label='Study Day' linearopts=(minorticks=true)) yaxisopts=(
+         label='Patient ID' display=(label)) walldisplay=none;
+         innermargin / align=left separator=true separatorattrs=(color=black thickness=2px);
+            axistable y=SID value=SUBJID / valueattrs=(size=9pt weight=bold) display=(values);
+         endinnermargin;
+         highlowplot y=SID low=STRT high=TRTDUR / lowcap=none highcap=none type=bar fillattrs
+            =(color=ghostwhite) outlineattrs=(color=black) name='Trt Dur';
+         vectorplot x=NEXTDY y=SID xorigin=ADY yorigin=SID / arrowheads=false lineattrs=(
+            thickness=7px pattern=solid) group=AVALC name='resp';
+         scatterplot x=BASEDY y=SID / markerattrs=(symbol=star color=red) name='Baseline'
+            legendlabel='Baseline';
+         discretelegend 'resp' / location=outside halign=left valign=bottom exclude=(' ')
+            border=false;
+         discretelegend 'Trt Dur' 'Baseline' / location=outside halign=right valign=bottom
+            border=false;
+      endlayout;
+   endgraph;
+end;
+NOTE: Path 'Disdur' is in: SASUSER.TEMPLAT.
+150  run;
+NOTE: PROCEDURE TEMPLATE used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+151  
+152  
+153  proc template;
+154      list/store=sashelp.tmplmst;
+155  run;
+NOTE: PROCEDURE TEMPLATE used (Total process time):
+      real time           0.07 seconds
+      cpu time            0.06 seconds
+      
+
+156  
+157  proc template;
+158      path sashelp.tmplmst;
+159      source Base.Contents;
+define table Base.Contents.Attributes;
+   notes "Contents Attributes";
+   dynamic wmax;
+   column label1 cvalue1 label2 cvalue2;
+
+   define label1;
+      space = 1;
+      just = l;
+      style = RowHeader;
+   end;
+
+   define cvalue1;
+      width_max = wmax;
+      width = 1;
+      just = l;
+      flow;
+   end;
+
+   define label2;
+      space = 1;
+      just = l;
+      style = RowHeader;
+   end;
+
+   define cvalue2;
+      just = l;
+   end;
+   parent = common.factoid;
+end;
+
+define table Base.Contents.EngineHost;
+   notes "Contents Engine/Host specific information";
+   dynamic spill wmin wmax;
+   column Label1 CValue1;
+   header head;
+
+   define head;
+      text "Engine/Host Dependent Information";
+      spill_margin = spill;
+   end;
+
+   define Label1;
+      just = l;
+      style = RowHeader;
+   end;
+
+   define CValue1;
+      width_max = wmax;
+      width = wmin;
+      just = l;
+      flow;
+   end;
+   col_space_max = 1;
+   col_space_min = 1;
+   parent = common.factoid;
+   newpage = OFF;
+   center;
+   justify;
+end;
+
+define table Base.Contents.ExtendedAttributesDataSet;
+   notes "Contents Extended Attributes for Data Set ";
+   dynamic ext_attr_width ext_attr_width_max attr_value_width attr_value_width_max
+      attr_var_width attr_var_width_max;
+   column ExtendedAttribute AttributeNumValue AttributeCharValue;
+   header main;
+
+   define main;
+      text "Alphabetic List of Data Set Extended Attributes";
+      space = 1;
+      spill_adj;
+      spill_margin;
+   end;
+
+   define ExtendedAttribute;
+      header = "Extended Attribute";
+      width_max = ext_attr_width_max;
+      width = ext_attr_width;
+      just = l;
+      flow;
+   end;
+
+   define AttributeNumValue;
+      header = "Numeric Value";
+      just = l;
+      flow;
+   end;
+
+   define AttributeCharValue;
+      header = "Character Value";
+      width_max = attr_value_width_max;
+      width = attr_value_width;
+      just = l;
+      flow;
+   end;
+   col_space_max = 2;
+   col_space_min = 2;
+   newpage = OFF;
+   center;
+   balance;
+end;
+
+define table Base.Contents.ExtendedAttributesDataSetShort;
+   notes "Contents Extended Attributes for Data Set(with SHORT option)";
+   column ExtendedAttributes;
+   header main;
+
+   define main;
+      text "Alphabetic List of Extended Attributes for Data Set";
+      space = 1;
+      spill_adj;
+      spill_margin;
+   end;
+
+   define ExtendedAttributes;
+      flow;
+      maximize;
+   end;
+   newpage;
+   center;
+end;
+
+define table Base.Contents.ExtendedAttributesVariable;
+   notes "Contents Extended Attributes for Variables";
+   dynamic ext_attr_width ext_attr_width_max attr_value_width attr_value_width_max
+      attr_var_width attr_var_width_max;
+   column ExtendedAttribute AttributeVariable AttributeNumValue AttributeCharValue;
+   header main;
+
+   define main;
+      text "Alphabetic List of Extended Attributes on Variables";
+      space = 1;
+      spill_adj;
+      spill_margin;
+   end;
+
+   define ExtendedAttribute;
+      header = "Extended Attribute";
+      width_max = ext_attr_width_max;
+      width = ext_attr_width;
+      just = l;
+      flow;
+   end;
+
+   define AttributeVariable;
+      header = "Attribute Variable";
+      width_max = attr_var_width_max;
+      width = attr_var_width;
+      just = l;
+      flow;
+   end;
+
+   define AttributeNumValue;
+      header = "Numeric Value";
+      just = l;
+      flow;
+   end;
+
+   define AttributeCharValue;
+      header = "Character Value";
+      width_max = attr_value_width_max;
+      width = attr_value_width;
+      just = l;
+      flow;
+   end;
+   col_space_max = 2;
+   col_space_min = 2;
+   newpage = OFF;
+   center;
+   balance;
+end;
+
+define table Base.Contents.ExtendedAttributesVariableShort;
+   notes "Contents Extended Attributes for Variables (wiht SHORT option)";
+   column ExtendedAttributes;
+   header main;
+
+   define main;
+      text "Alphabetic List of Extended Attributes for Variables";
+      space = 1;
+      spill_adj;
+      spill_margin;
+   end;
+
+   define ExtendedAttributes;
+      flow;
+      maximize;
+   end;
+   newpage;
+   center;
+end;
+
+define table Base.Contents.ICs;
+   notes "Contents Integrity Constraints";
+   dynamic name_width name_width_max vars_width vars_width_max where_width where_width_max
+      ref_width ref_width_max;
+   column Num Constraint Type Variables WhereClause Reference OnDelete OnUpdate Inactive
+      UserMessage MessageType;
+   header main;
+
+   define main;
+      text "Alphabetic List of Integrity Constraints";
+      space = 1;
+      spill_adj;
+      spill_margin;
+   end;
+
+   define Num;
+      header = "/#/";
+      translate _val_=. into "";
+      style = RowHeader;
+      id;
+   end;
+
+   define Constraint;
+      header = "Integrity Constraint";
+      width_max = name_width_max;
+      width = name_width;
+      flow;
+   end;
+
+   define Type;
+      header = "Type";
+   end;
+
+   define Variables;
+      header = "Variables";
+      width_max = vars_width_max;
+      width = vars_width;
+      flow;
+   end;
+
+   define WhereClause;
+      header = "/Where/Clause/";
+      width_max = where_width_max;
+      width = where_width;
+      flow;
+   end;
+
+   define Reference;
+      header = "Reference";
+      width_max = ref_width_max;
+      width = ref_width;
+      flow;
+   end;
+
+   define OnDelete;
+      header = "/On/Delete/";
+   end;
+
+   define OnUpdate;
+      header = "/On/Update/";
+   end;
+
+   define Inactive;
+      header = "Inactive";
+   end;
+
+   define UserMessage;
+      header = "/User/Message";
+   end;
+
+   define MessageType;
+      header = "/Message/Type";
+      just = l;
+   end;
+   col_space_max = 4;
+   col_space_min = 1;
+   newpage = OFF;
+   center;
+   balance;
+end;
+
+define table Base.Contents.ICsShort;
+   notes "Contents Integrity Constraints (with SHORT option)";
+   column Constraint;
+   header main;
+
+   define main;
+      text "Alphabetic List of Integrity Constraints";
+      space = 1;
+      spill_adj;
+      spill_margin;
+   end;
+
+   define Constraint;
+      flow;
+   end;
+   newpage = OFF;
+   center;
+end;
+
+define table Base.Contents.Indexes;
+   notes "Contents Indexes";
+   dynamic kname_width kname_width_max var_width_max;
+   column Num Index Unique NoMiss ICBuilt ICOwn UpCen CurUpPer NumVals Variables Inactive;
+   header main;
+
+   define main;
+      text "Alphabetic List of Indexes and Attributes";
+      space = 1;
+      spill_adj;
+      spill_margin;
+      first_panel;
+   end;
+
+   define Num;
+      header = "/#/";
+      translate _val_=. into "";
+      style = RowHeader;
+      id;
+   end;
+
+   define Index;
+      header = "Index";
+      width_max = kname_width_max;
+      width = kname_width;
+      id;
+   end;
+
+   define Unique;
+      header = "/Unique/Option/";
+   end;
+
+   define NoMiss;
+      header = "/NoMiss/Option/";
+   end;
+
+   define ICBuilt;
+      header = "/Built/by IC/";
+   end;
+
+   define ICOwn;
+      header = "/Owned/by IC/";
+   end;
+
+   define UpCen;
+      header = "/Update/Centiles/";
+      translate _val_=.Z into "";
+   end;
+
+   define CurUpPer;
+      header = "/Current/Update/Percent/";
+      translate _val_=.Z into "";
+   end;
+
+   define NumVals;
+      header = "/# of/Unique/Values/";
+      translate _val_=.Z into "";
+   end;
+
+   define Variables;
+      header = "Variables";
+      width_max = var_width_max;
+      width = 9;
+      flow;
+      maximize;
+   end;
+
+   define Inactive;
+      header = "Inactive";
+   end;
+   col_space_max = 4;
+   col_space_min = 1;
+   newpage = OFF;
+   center;
+   balance;
+   use_name;
+   wrap;
+end;
+
+define table Base.Contents.IndexesShort;
+   notes "Contents Indexes (with SHORT option)";
+   column Variables;
+   header main;
+
+   define main;
+      text "Alphabetic List of Indexes";
+      space = 1;
+      spill_adj;
+      spill_margin;
+   end;
+
+   define Variables;
+      flow;
+   end;
+   newpage = OFF;
+   center;
+end;
+
+define table Base.Contents.InfoMaps;
+   notes "Contents InfoMaps";
+   dynamic filtername_width filtername_width_max var_width_max filtertype_width
+      filtertype_width_max filterdesc_width filterdesc_width_max valuename_width
+      valuename_width_max valuetype_width valuetype_width_max valuedesc_width
+      valuedesc_width_max;
+   column FilterName FilterType FilterDesc ValueName ValueType ValueDesc;
+   header main;
+
+   define main;
+      text "Information Maps";
+      space = 1;
+      spill_adj;
+      spill_margin;
+   end;
+
+   define FilterName;
+      header = "FilterName";
+      width_max = filtername_width_max;
+      width = filtername_width;
+      just = l;
+      flow;
+   end;
+
+   define FilterType;
+      header = "FilterType";
+      width_max = filtertype_width_max;
+      width = filtertype_width;
+      just = l;
+      flow;
+   end;
+
+   define FilterDesc;
+      header = "FilterDesc";
+      width_max = filterdesc_width_max;
+      width = filterdesc_width;
+      just = l;
+      flow;
+   end;
+
+   define ValueName;
+      header = "ValueName";
+      width_max = valuename_width_max;
+      width = valuename_width;
+      just = l;
+      flow;
+   end;
+
+   define ValueType;
+      header = "ValueType";
+      width_max = valuetype_width_max;
+      width = valuetype_width;
+      just = l;
+      flow;
+   end;
+
+   define ValueDesc;
+      header = "ValueDesc";
+      width_max = valuedesc_width_max;
+      width = valuedesc_width;
+      just = l;
+      flow;
+   end;
+   col_space_max = 2;
+   col_space_min = 2;
+   newpage = OFF;
+   center;
+   balance;
+   wrap;
+end;
+
+define table Base.Contents.InfoMapsShort;
+   notes "Contents InfoMaps (with SHORT option)";
+   column FilterName;
+   header main;
+
+   define main;
+      text "InfoMaps";
+      space = 1;
+      spill_adj;
+      spill_margin;
+   end;
+
+   define FilterName;
+      flow;
+      maximize;
+   end;
+   newpage = OFF;
+   center;
+end;
+
+define table Base.Contents.Position;
+   notes "Contents Position";
+   dynamic name_width name_width_max label_width label_width_max rs agg_width agg_width_max;
+   column Num Variable Type Len Pos Flags Format Informat Aggregation Label Transcode;
+   header main;
+
+   define main;
+      text "Variables in Creation Order";
+      space = 1;
+      spill_adj;
+      spill_margin;
+   end;
+
+   define Num;
+      header = "/#/";
+      style = RowHeader;
+      id;
+   end;
+
+   define Variable;
+      header = "Variable";
+      width_max = name_width_max;
+      width = name_width;
+      flow;
+   end;
+
+   define Type;
+      header = "Type";
+   end;
+
+   define Len;
+      header = "Len";
+   end;
+
+   define Pos;
+      header = "Pos";
+      print = OFF;
+   end;
+
+   define Flags;
+      header = "Flags";
+   end;
+
+   define Format;
+      header = "Format";
+   end;
+
+   define Informat;
+      header = "Informat";
+   end;
+
+   define Aggregation;
+      header = "Default Aggregation";
+      width_max = agg_width_max;
+      width = agg_width;
+      flow;
+   end;
+
+   define Label;
+      header = "Label";
+      width_max = label_width_max;
+      width = label_width;
+   end;
+
+   define Transcode;
+      header = "Transcode";
+   end;
+   required_space = rs;
+   col_space_max = 4;
+   col_space_min = 1;
+   newpage = OFF;
+   center;
+   balance;
+end;
+
+define table Base.Contents.PositionShort;
+   notes "Contents Variables Position Short";
+   column Variables;
+   header main;
+
+   define main;
+      text "Variables in Creation Order";
+      space = 1;
+      spill_adj;
+      spill_margin;
+   end;
+
+   define Variables;
+      flow;
+   end;
+   newpage = OFF;
+   center;
+end;
+
+define table Base.Contents.SortedBy;
+   notes "Contents SortedBy";
+   dynamic spill wmax;
+   column Label1 Cvalue1;
+   header head;
+
+   define head;
+      text "Sort Information";
+      spill_margin = spill;
+   end;
+
+   define Label1;
+      just = l;
+      style = RowHeader;
+   end;
+
+   define Cvalue1;
+      width_max = wmax;
+      width = 1;
+      just = l;
+      flow;
+   end;
+   col_space_max = 1;
+   col_space_min = 1;
+   parent = common.factoid;
+   newpage = OFF;
+   justify;
+end;
+
+define table Base.Contents.SortedByShort;
+   notes "Contents SortedBy (with SHORT option)";
+   column Index;
+   header main;
+
+   define main;
+      text "SortedBy";
+      space = 1;
+      spill_adj;
+      spill_margin;
+   end;
+
+   define Index;
+      flow;
+      maximize;
+   end;
+   newpage = OFF;
+   center;
+end;
+
+define table Base.Contents.Variables;
+   notes "Contents Variables";
+   dynamic name_width name_width_max agg_width agg_width_max label_width label_width_max;
+   column Num Variable Type Len Pos Flags Format Informat Aggregation Label Transcode;
+   header main;
+
+   define main;
+      text "Alphabetic List of Variables and Attributes";
+      space = 1;
+      spill_adj;
+      spill_margin;
+   end;
+
+   define Num;
+      header = "/#/";
+      style = RowHeader;
+      id;
+   end;
+
+   define Variable;
+      header = "Variable";
+      width_max = name_width_max;
+      width = name_width;
+   end;
+
+   define Type;
+      header = "Type";
+   end;
+
+   define Len;
+      header = "Len";
+   end;
+
+   define Pos;
+      header = "Pos";
+      print = OFF;
+   end;
+
+   define Flags;
+      header = "Flags";
+   end;
+
+   define Format;
+      header = "Format";
+   end;
+
+   define Informat;
+      header = "Informat";
+   end;
+
+   define Aggregation;
+      header = "Default Aggregation";
+      width_max = agg_width_max;
+      width = agg_width;
+      flow;
+   end;
+
+   define Label;
+      header = "Label";
+      width_max = label_width_max;
+      width = label_width;
+      flow;
+   end;
+
+   define Transcode;
+      header = "Transcode";
+   end;
+   col_space_max = 4;
+   col_space_min = 1;
+   newpage = OFF;
+   center;
+   balance;
+end;
+
+define table Base.Contents.VariablesShort;
+   notes "Contents Variables Short";
+   dynamic dsname;
+   column Variables;
+   header main;
+
+   define main;
+      text "Alphabetic List of Variables for " dsname;
+      space = 1;
+      spill_adj;
+      spill_margin;
+   end;
+
+   define Variables;
+      flow;
+      maximize;
+   end;
+   newpage;
+   center;
+end;
+160  run;
+NOTE: PROCEDURE TEMPLATE used (Total process time):
+      real time           0.06 seconds
+      cpu time            0.04 seconds
+      
+
+161  
+162  proc template;
+163      path sashelp.tmplmst;
+164      source StatGraph.TimeSeries.CrossSeriesPlot;
+define statgraph StatGraph.TimeSeries.CrossSeriesPlot;
+   dynamic Title Time Series CrossSeries Variable VariableLabel CrossVariable CrossLabel ID
+      IDLabel IDFormat IDType Interval IntegerTime ShortVarLabel ShortCrossLabel _byline_
+      _bytitle_ _byfootnote_;
+   BeginGraph;
+      EntryTitle TITLE;
+      Layout Overlay / YAxisOpts=(shortlabel=SHORTVARLABEL label=VARIABLELABEL Display=all
+         GridDisplay=Auto_On) Y2AxisOpts=(shortlabel=SHORTCROSSLABEL label=CROSSLABEL Display
+         =all GridDisplay=Auto_Off) XAxisOpts=(shortlabel=ID label=IDLABEL type=IDTYPE
+         timeopts=(tickvalueformat=IDFORMAT) Display=all GridDisplay=Auto_On linearopts=(
+         integer=INTEGERTIME));
+         SeriesPlot x=TIME y=SERIES / LegendLabel=VARIABLE lineattrs=GRAPHDATA1 name="Series";
+         SeriesPlot x=TIME y=CROSSSERIES / yaxis=y2 lineattrs=GRAPHDATA2 LegendLabel=
+            CROSSVARIABLE name="CrossSeries";
+         DiscreteLegend "Series" "CrossSeries";
+      EndLayout;
+      if (_BYTITLE_)
+         entrytitle _BYLINE_ / textattrs=GRAPHVALUETEXT;
+      else
+         if (_BYFOOTNOTE_)
+            entryfootnote halign=left _BYLINE_;
+         endif;
+      endif;
+   EndGraph;
+end;
+NOTE: Path 'StatGraph.TimeSeries.CrossSeriesPlot' is in: SASHELP.TMPLMST.
+165  run;
+NOTE: PROCEDURE TEMPLATE used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+166  proc template;
+167      path sasuser.templat;
+168      source Datalattice;
+define statgraph Datalattice;
+   begingraph / designwidth=490px designheight=400px;
+      entrytitle "Heart Rates for Subjects";
+      layout datalattice rowvar=SUBJECT columnvar=TREATMENT / rows=3 rowgutter=5px
+         cellheightmin=50 cellwidthmin=50 rowheaders=left skipemptycells=true columnaxisopts=
+         (display=(tickvalues)) rowaxisopts=(display=none displaysecondary=(label) offsetmin=
+         0);
+         layout prototype;
+            barchart category=TASK response=HEARTRATE / barlabel=true;
+         endlayout;
+      endlayout;
+   endgraph;
+end;
+NOTE: Path 'Datalattice' is in: SASUSER.TEMPLAT.
+169  run;
+NOTE: PROCEDURE TEMPLATE used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.00 seconds
+      
+
+NOTE: SAS Institute Inc., SAS Campus Drive, Cary, NC USA 27513-2414
+NOTE: The SAS System used:
+      real time           17:20.92
+      cpu time            23.46 seconds
+      

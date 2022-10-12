@@ -1,0 +1,26 @@
+proc template;
+	path sashelp.tmplmst;
+	source StatGraph.TimeSeries.SeriesHistogram;
+	define statgraph StatGraph.TimeSeries.SeriesHistogram;
+   		dynamic title series _byline_ _bytitle_ _byfootnote_;
+   		begingraph;
+      		entrytitle title;
+      		layout overlay / xaxisopts=(label="series" linearopts=(tickvalueformat=best12.))
+         					yaxisopts=(label="percent");
+         		histogram series;
+         		densityplot series / legendlabel="normal" name="normal";
+         		densityplot series / kernel () legendlabel="kernel" name="kernel" lineattrs=
+            				graphfit2;
+         		discretelegend "normal" "kernel" / across=1 location=inside autoalign=(topright
+            			topleft top);
+      		endlayout;
+      		if (_bytitle_)
+         		entrytitle _byline_ / textattrs=graphvaluetext;
+      		else
+         	if (_byfootnote_)
+            	entryfootnote halign=left _byline_;
+         	endif;
+      		endif;
+   		endgraph;
+	end;
+run;

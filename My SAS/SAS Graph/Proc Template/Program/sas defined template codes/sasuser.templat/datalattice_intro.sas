@@ -1,0 +1,14 @@
+proc template;
+	path sasuser.templat;
+	source Datalattice_intro;
+	define statgraph Datalattice_intro;
+   		begingraph;
+      	entrytitle "Office Furniture Sales";
+      	layout datalattice rowvar=PRODUCT columnvar=DIVISION;
+        layout prototype;
+            seriesplot x=MONTH y=ACTUAL;
+        endlayout;
+      	endlayout;
+   	endgraph;
+	end;
+run;

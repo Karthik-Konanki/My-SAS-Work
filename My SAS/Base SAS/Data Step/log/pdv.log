@@ -1,16 +1,16 @@
 NOTE: PROCEDURE PRINTTO used (Total process time):
-      real time           0.53 seconds
-      cpu time            0.07 seconds
+      real time           0.03 seconds
+      cpu time            0.00 seconds
       
 
-4    
-5    
-6    data total_points (drop=TeamName);
-7    put _all_;
-8     input TeamName $ ParticipantName $ Event1 Event2 Event3;
-9     TeamTotal + (Event1 + Event2 + Event3);
-10   put _all_;
-11    datalines;
+82   
+83   
+84   data total_points (drop=TeamName);
+85   put _all_;
+86    input TeamName $ ParticipantName $ Event1 Event2 Event3;
+87    TeamTotal + (Event1 + Event2 + Event3);
+88   put _all_;
+89    datalines;
 
 TeamName=  ParticipantName=  Event1=. Event2=. Event3=. TeamTotal=0 _ERROR_=0 _N_=1
 TeamName=Knights ParticipantName=Sue Event1=6 Event2=8 Event3=8 TeamTotal=22 _ERROR_=0 _N_=1
@@ -28,18 +28,18 @@ _N_=6
 TeamName=  ParticipantName=  Event1=. Event2=. Event3=. TeamTotal=139 _ERROR_=0 _N_=7
 NOTE: The data set WORK.TOTAL_POINTS has 6 observations and 5 variables.
 NOTE: DATA statement used (Total process time):
-      real time           0.04 seconds
-      cpu time            0.01 seconds
+      real time           0.00 seconds
+      cpu time            0.00 seconds
       
 
-18   ;
-19   
-20   data total_points1 (drop=TeamName);
-21   put _all_;
-22    input TeamName $ ParticipantName $ Event1 Event2 Event3;
-23    TeamTotal + sum(of Event1, Event2, Event3);
-24   put _all_;
-25    datalines;
+96   ;
+97   
+98   data total_points1 (drop=TeamName);
+99   put _all_;
+100   input TeamName $ ParticipantName $ Event1 Event2 Event3;
+101   TeamTotal + sum(of Event1, Event2, Event3);
+102  put _all_;
+103   datalines;
 
 TeamName=  ParticipantName=  Event1=. Event2=. Event3=. TeamTotal=0 _ERROR_=0 _N_=1
 TeamName=Knights ParticipantName=Sue Event1=6 Event2=8 Event3=8 TeamTotal=22 _ERROR_=0 _N_=1
@@ -61,11 +61,11 @@ NOTE: DATA statement used (Total process time):
       cpu time            0.00 seconds
       
 
-32   ;
-33   
-34   data points (drop=TeamName);
-35    input TeamName $ ParticipantName $ Event1 Event2 Event3;
-36    datalines;
+110  ;
+111  
+112  data points (drop=TeamName);
+113   input TeamName $ ParticipantName $ Event1 Event2 Event3;
+114   datalines;
 
 NOTE: The data set WORK.POINTS has 6 observations and 4 variables.
 NOTE: DATA statement used (Total process time):
@@ -73,14 +73,14 @@ NOTE: DATA statement used (Total process time):
       cpu time            0.00 seconds
       
 
-43   ;
-44   
-45   data team_points2;
-46       put _all_;
-47       set points;
-48       TeamTotal + sum(of Event1, Event2, Event3);
-49       put _all_;
-50   run;
+121  ;
+122  
+123  data team_points2;
+124      put _all_;
+125      set points;
+126      TeamTotal + sum(of Event1, Event2, Event3);
+127      put _all_;
+128  run;
 
 ParticipantName=  Event1=. Event2=. Event3=. TeamTotal=0 _ERROR_=0 _N_=1
 ParticipantName=Sue Event1=6 Event2=8 Event3=8 TeamTotal=22 _ERROR_=0 _N_=1
@@ -102,20 +102,20 @@ NOTE: DATA statement used (Total process time):
       cpu time            0.00 seconds
       
 
-51   
-52    data grades;
-53    put _all_;
-54    StudentID=101; Class="A"; English=80; Math=70; output;
-55    put _all_;
-56    StudentID=102; Class="B"; English=. ; Math=60; output;
-57    put _all_;
-58    StudentID=103; Class="A"; English=70; Math=. ; output;
-59    put _all_;
-60    StudentID=104; Class="A"; English=80; Math=95; output;
-61    put _all_;
-62    StudentID=105; Class="B"; English=90; Math=80; output;
-63    put _all_;
-64    run;
+129  
+130   data grades;
+131   put _all_;
+132   StudentID=101; Class="A"; English=80; Math=70; output;
+133   put _all_;
+134   StudentID=102; Class="B"; English=. ; Math=60; output;
+135   put _all_;
+136   StudentID=103; Class="A"; English=70; Math=. ; output;
+137   put _all_;
+138   StudentID=104; Class="A"; English=80; Math=95; output;
+139   put _all_;
+140   StudentID=105; Class="B"; English=90; Math=80; output;
+141   put _all_;
+142   run;
 
 StudentID=. Class=  English=. Math=. _ERROR_=0 _N_=1
 StudentID=101 Class=A English=80 Math=70 _ERROR_=0 _N_=1
@@ -129,17 +129,17 @@ NOTE: DATA statement used (Total process time):
       cpu time            0.00 seconds
       
 
-65   
-66    data example3;
-67    put _all_;
-68    set grades;
-69    length eng_cnt math_cnt average 8 ;
-70    if English > . then eng_cnt=1 ; else Eng_cnt=0 ;
-71    if Math > . then math_cnt=1 ;
-72    class_cnt = sum (eng_cnt, math_cnt) ;
-73    average = sum (English, Math) / class_cnt ;
-74    put _all_;
-75    run;
+143  
+144   data example3;
+145   put _all_;
+146   set grades;
+147   length eng_cnt math_cnt average 8 ;
+148   if English > . then eng_cnt=1 ; else Eng_cnt=0 ;
+149   if Math > . then math_cnt=1 ;
+150   class_cnt = sum (eng_cnt, math_cnt) ;
+151   average = sum (English, Math) / class_cnt ;
+152   put _all_;
+153   run;
 
 StudentID=. Class=  English=. Math=. eng_cnt=. math_cnt=. average=. class_cnt=. _ERROR_=0
 _N_=1
@@ -170,7 +170,7 @@ NOTE: DATA statement used (Total process time):
       cpu time            0.00 seconds
       
 
-76   
-77   proc printto;
-78   run;
+154  
+155  proc printto;
+156  run;
 

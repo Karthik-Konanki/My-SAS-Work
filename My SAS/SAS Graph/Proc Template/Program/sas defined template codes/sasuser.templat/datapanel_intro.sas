@@ -1,0 +1,14 @@
+proc template;
+	path sasuser.templat;
+	source Datapanel_intro;
+	define statgraph Datapanel_intro;
+   		begingraph;
+      		entrytitle "Office Furniture Sales";
+      		layout datapanel classvars=(PRODUCT DIVISION) / columns=2;
+         	layout prototype;
+            	seriesplot x=MONTH y=ACTUAL;
+         	endlayout;
+      		endlayout;
+   		endgraph;
+	end;
+run;

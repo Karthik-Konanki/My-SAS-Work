@@ -1,3 +1,8 @@
+proc printto log = "E:\NewDisk\SAS\My SAS\Base SAS\Data Step\log\pdv.log"
+			 print="E:\NewDisk\SAS\My SAS\Base SAS\Data Step\lst\pdv.lst";
+run;
+
+
 data total_points (drop=TeamName); 
 put _all_;
  input TeamName $ ParticipantName $ Event1 Event2 Event3; 
@@ -68,3 +73,6 @@ run;
  average = sum (English, Math) / class_cnt ;
  put _all_;
  run;
+
+proc printto;
+run;
