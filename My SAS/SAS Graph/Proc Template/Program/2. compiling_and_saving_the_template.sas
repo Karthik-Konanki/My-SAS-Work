@@ -87,3 +87,5 @@ run;
 proc template;
      source styles.default / file='c:\sas\template.sas.';
 run;
+
+/**Use command "odstemplates" to get templates in SAS9.4 windowing environment**/
