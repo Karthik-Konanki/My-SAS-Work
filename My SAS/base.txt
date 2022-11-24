@@ -1,0 +1,73 @@
+define table Base.Contents.Variables;
+   notes "Contents Variables";
+   dynamic name_width name_width_max agg_width agg_width_max label_width label_width_max;
+   column Num Variable Type Len Pos Flags Format Informat Aggregation Label Transcode;
+   header main;
+
+   define main;
+      text "Alphabetic List of Variables and Attributes";
+      space = 1;
+      spill_adj;
+      spill_margin;
+   end;
+
+   define Num;
+      header = "/#/";
+      style = RowHeader;
+      id;
+   end;
+
+   define Variable;
+      header = "Variable";
+      width_max = name_width_max;
+      width = name_width;
+   end;
+
+   define Type;
+      header = "Type";
+   end;
+
+   define Len;
+      header = "Len";
+   end;
+
+   define Pos;
+      header = "Pos";
+      print = OFF;
+   end;
+
+   define Flags;
+      header = "Flags";
+   end;
+
+   define Format;
+      header = "Format";
+   end;
+
+   define Informat;
+      header = "Informat";
+   end;
+
+   define Aggregation;
+      header = "Default Aggregation";
+      width_max = agg_width_max;
+      width = agg_width;
+      flow;
+   end;
+
+   define Label;
+      header = "Label";
+      width_max = label_width_max;
+      width = label_width;
+      flow;
+   end;
+
+   define Transcode;
+      header = "Transcode";
+   end;
+   col_space_max = 4;
+   col_space_min = 1;
+   newpage = OFF;
+   center;
+   balance;
+end;

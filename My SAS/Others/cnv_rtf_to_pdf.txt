@@ -1,0 +1,26 @@
+bRecursive = False
+sFolder = "C:\Users\curio\Desktop\rough\rtf_combine"
+Set oFSO = CreateObject("Scripting.FileSystemObject")
+Set oWord = CreateObject("Word.Application")
+oWord.Visible = True
+
+Set oFolder = oFSO.GetFolder(sFolder)
+ConvertFolder(oFolder)
+oWord.Quit
+
+Sub ConvertFolder(oFldr)
+  For Each oFile In oFldr.Files
+    If LCase(oFSO.GetExtensionName(oFile.Name)) = "rtf" Then
+        Set oDoc = oWord.Documents.Open(oFile.path)
+        Str = left(oFile,instr(1,oFile,".")-1) 
+        oWord.ActiveDocument.SaveAs Str & ".pdf", 17
+        oDoc.Close
+    End If
+Next
+
+If bRecursive Then
+    For Each oSubfolder In oFldr.Subfolders
+        ConvertFolder oSubfolder
+    Next
+End If
+End Sub
