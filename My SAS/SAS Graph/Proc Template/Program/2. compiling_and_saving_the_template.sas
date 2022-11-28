@@ -4,6 +4,16 @@
 /*Current template search path*/
 ods path show;
 
+/*Viewing list of templates in sas*/
+
+proc template;
+	list styles;
+run;
+
+proc template;
+	list stat;
+run;
+
 /*List the templates that are stored in the sasuser.template*/
 proc template;
 	list/store = sasuser.templat;
