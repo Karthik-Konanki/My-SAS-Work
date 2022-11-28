@@ -1,7 +1,7 @@
 ods path show;
 
 ods graphics / reset width=460px height=440px; 
-ods rtf style=Daisy path="E:\NewDisk\SAS\My SAS\SAS Graph\Proc Template\Output" file="mychart.rtf"; 
+ods rtf style=Daisy path="E:\NewDisk\SAS\My SAS\SAS Graph\Proc Template\Output" file="mychart - stachkedbar.rtf"; 
 
 proc sort data=sashelp.cars out=cars; 
 	by type;
