@@ -1,0 +1,7 @@
+{
+  "bundle": "t002_iml_first_code",
+  "source_file": "My SAS/SAS IML/Working with Matrices/first_code.sas",
+  "source_blob_sha": "6520fe42389d1b1c3d9c6cdf4cfbf6ff8a636fc9",
+  "source_commit": "b0df794dbd15e0e52102d4d63b1229ef3822eccf",
+  "notes": "First PROC IML examples: single- vs double-quoted string literals with embedded quotes, printed both together and separately. The source file's third block (reassigning the same variable to a character row vector of unequal-length strings and printing it) is omitted from this bundle; the two string-literal blocks shipped here are unmodified. status=ok, exit_code=0 on Jenner."
+}

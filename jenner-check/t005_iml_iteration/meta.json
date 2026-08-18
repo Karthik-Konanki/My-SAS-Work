@@ -1,0 +1,7 @@
+{
+  "bundle": "t005_iml_iteration",
+  "source_file": "My SAS/SAS IML/control Statements/iteration_statements.sas",
+  "source_blob_sha": "1f59f19f6a9d34d0349d7d4c122626ebae503349",
+  "source_commit": "b0df794dbd15e0e52102d4d63b1229ef3822eccf",
+  "notes": "PROC IML iteration statements: iterative DO with BY, DO WHILE (both a firing and a non-firing case), and DO UNTIL. The original opened with a DO DATA block reading from a hardcoded local file (E:\\NewDisk\\SAS\\My SAS\\SAS IML\\mydata.txt) via FILENAME/INFILE; dropped since there's no portable stand-in for that specific fixture. Everything else is unmodified. status=ok, exit_code=0 on Jenner."
+}

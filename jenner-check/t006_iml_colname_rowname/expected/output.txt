@@ -1,0 +1,18 @@
+       4       2       2       3       2
+       3       3       1       2       1
+       2       1       0       2       1
+       5       4       4       3       4
+
+             Mon     Tue     Wed     Thu     Fri
+   Jenny       4       2       2       3       2
+   Linda       3       3       1       2       1
+     Jim       2       1       0       2       1
+  Samuel       5       4       4       3       4
+
+Weekly Coffee
+             Mon     Tue     Wed     Thu     Fri
+   Jenny       4       2       2       3       2
+   Linda       3       3       1       2       1
+     Jim       2       1       0       2       1
+  Samuel       5       4       4       3       4
+

@@ -1,0 +1,20 @@
+{
+  "_captured_at": "2026-08-18T08:43:08.447627Z",
+  "_captured_run_id": "r_52fe177ed48c48a3bee72334c378270b",
+  "status": "ok",
+  "exit_code": 0,
+  "log_contains": [
+    "NOTE: Wrote total_points (6 rows, 5 columns).",
+    "NOTE: Wrote grades (5 rows, 4 columns).",
+    "NOTE: Wrote example3 (5 rows, 8 columns).",
+    "NOTE: PROC PRINT completed: 5 observations printed, 8 variables"
+  ],
+  "log_does_not_contain": [
+    "ERROR:",
+    "[JENNER-ERROR"
+  ],
+  "diagnostics": {
+    "parse_warnings": [],
+    "runtime_warnings": []
+  }
+}
