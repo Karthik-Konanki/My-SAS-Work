@@ -1,0 +1,7 @@
+{
+  "bundle": "t006_iml_colname_rowname",
+  "source_file": "My SAS/SAS IML/Working with Matrices/colname_rownames_matrices.sas",
+  "source_blob_sha": "2a3cc333c5ad8c51ebe2a5828844fe38df2da382",
+  "source_commit": "b0df794dbd15e0e52102d4d63b1229ef3822eccf",
+  "notes": "Displaying matrices with row/column headings: RESET AUTONAME, ROWNAME=/COLNAME= on PRINT, and the MATTRIB statement (label + format) applied to the same coffee-tracking matrix used elsewhere in the repo's IML folder. Shipped byte-identical to the source, fully self-contained. status=ok, exit_code=0 on Jenner."
+}

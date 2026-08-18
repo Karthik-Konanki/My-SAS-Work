@@ -1,0 +1,7 @@
+{
+  "bundle": "t001_pdv_data_step",
+  "source_file": "My SAS/Base SAS/Data Step/program/pdv.sas",
+  "source_blob_sha": "4d16c794f71aa09b01187d8045e83d5ba2c7de0c",
+  "source_commit": "b0df794dbd15e0e52102d4d63b1229ef3822eccf",
+  "notes": "PDV/compilation-phase walkthrough: five DATA steps building small rosters and grade tables from inline DATALINES, ending with a running-sum accumulator and a PROC MEANS-style average calc guarded against missing values. Removed the original's PROC PRINTTO log/lst redirection to a hardcoded E:\\NewDisk path (unrelated to the teaching content); added a trailing PROC PRINT so the captured run has a visible listing. All DATA step logic, DATALINES, and PUT _ALL_ tracing are unmodified."
+}

@@ -1,0 +1,7 @@
+{
+  "bundle": "t004_iml_operators",
+  "source_file": "My SAS/SAS IML/Working with Matrices/operators.sas",
+  "source_blob_sha": "2436353005fa181fdc7ebcba5e14387b7db5f2f5",
+  "source_commit": "b0df794dbd15e0e52102d4d63b1229ef3822eccf",
+  "notes": "PROC IML operators tour: compound expressions, elementwise binary operators, subscripting (positional/vector/submatrix/subscripted assignment), reduction operators (row/column sums, min/max, mean). Two lines in the subscripts block that selected by attached row/column name (x['jenny',], x[,'Mon']) are omitted from this bundle; everything else, including the rest of that same block, is unmodified. status=ok, exit_code=0 on Jenner."
+}

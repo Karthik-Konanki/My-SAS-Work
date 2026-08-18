@@ -1,0 +1,7 @@
+{
+  "bundle": "t003_iml_matrices",
+  "source_file": "My SAS/SAS IML/Working with Matrices/matricies.sas",
+  "source_blob_sha": "d0e7415be1f67672fe167fb777e6c66b0d9c5479",
+  "source_commit": "b0df794dbd15e0e52102d4d63b1229ef3822eccf",
+  "notes": "PROC IML matrix types tour: scalars, row/column vectors, 2D matrices, missing values, RESET PRINT with rowname/format/label, matrix-generating functions (BLOCK, J, I, DESIGNF/DESIGN, REPEAT, SHAPE), and index vectors. Two lines in the first block (an OPTIONS statement and a name-literal ('my name'n) variable) are omitted from this bundle; everything else, across all four PROC IML blocks, is unmodified. status=ok, exit_code=0 on Jenner."
+}

@@ -1,0 +1,7 @@
+{
+  "bundle": "t007_iml_compound_statements",
+  "source_file": "My SAS/SAS IML/control Statements/compound_statements.sas",
+  "source_blob_sha": "2fc7e55a14a045e590f6bebe1426e10884bf7475",
+  "source_commit": "b0df794dbd15e0e52102d4d63b1229ef3822eccf",
+  "notes": "PROC IML compound DO statements: nested IF-THEN/ELSE with DO/END blocks (written two ways -- multi-line and inline). Shipped byte-identical to the source, fully self-contained. status=ok, exit_code=0 on Jenner."
+}
